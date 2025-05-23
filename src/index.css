@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.circle-picker {
+  width: 100% !important; /* or set a specific width like 400px */
+  justify-content: flex-start; /* or center */
+  display: flex;
+  flex-wrap: wrap;
+}
