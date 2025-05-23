@@ -16,7 +16,7 @@ Ensure you have the following installed on your machine:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/shane-permalloo/dpi-qr.git
+   git clone [https://github.com/shane-permalloo/dpi-qr.git](https://github.com/shane-permalloo/DPI-QR.git)
    cd dpi-qr
    ```
 
