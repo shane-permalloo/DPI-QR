@@ -196,11 +196,10 @@ END:VCALENDAR`;
         {renderQRCodeWithLogo()}
         
         {!isValidPreview && (
-          <div className="absolute inset-0 bg-gray-200 bg-opacity-70 flex items-center justify-center rounded-lg">
+          <div className="absolute inset-0 bg-gray-100 bg-opacity-70 flex items-center justify-center rounded-lg">
             <div className="text-center p-4">
               <AlertTriangle size={48} className="mx-auto mb-2 text-amber-500" />
-              <p className="text-gray-700 font-medium">URL parameter missing</p>
-              <p className="text-sm text-gray-600">Add a valid URL to generate QR code</p>
+              <p className="text-gray-700 text-sm font-medium bg-gray-100 bg-opacity-90 rounded-md p-2">URL parameter missing<br />Add a valid URL to generate QR code</p>
             </div>
           </div>
         )}

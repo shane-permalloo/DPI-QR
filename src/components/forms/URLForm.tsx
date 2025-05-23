@@ -42,6 +42,7 @@ const URLForm: React.FC<URLFormProps> = ({ qrData, onDataChange, onValidityChang
       setMissingUrlParam(true);
       if (onValidityChange) onValidityChange(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array to run only once on mount
 
   const handleUrlChange = (index: number, value: string) => {
@@ -123,7 +124,7 @@ const URLForm: React.FC<URLFormProps> = ({ qrData, onDataChange, onValidityChang
             <div>
               <p className="text-lg text-amber-800">URL Parameter Missing</p>
               <p className="text-sm text-amber-700">
-                Please add the URL parameter to the page address: <code className='text-gray-600 bg-gray-100 px-2 py-2 rounded-md ml-1'>?urlPage=https://example.com</code>
+                Please add a valid URL parameter to the browser URL: <code className='text-gray-600 bg-gray-100 px-2 py-2 rounded-md ml-1'>?urlPage=https://example.com</code>
               </p>
             </div>
           </div>

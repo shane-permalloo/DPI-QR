@@ -78,6 +78,7 @@ const CustomizationPanel: FC<CustomizationPanelProps> = ({
             logoWidth: width,
             logoHeight: height
           });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
           setUploadError('Failed to process image');
         }
@@ -125,7 +126,11 @@ const CustomizationPanel: FC<CustomizationPanelProps> = ({
     '#388E3C', // Material Green 700
     '#F57C00', // Material Orange 700
     '#7B1FA2', // Material Purple 700
-    '#00838F'  // Material Cyan 700
+    '#00838F',  // Material Cyan 700
+    '#2E1065', // Deep Purple 900
+    '#3F0F40', // Rich Plum
+    '#134E4A', // Deep Emerald
+    '#450A0A'  // Dark Maroon
   ];
 
   const backgroundColors = [
@@ -152,7 +157,11 @@ const CustomizationPanel: FC<CustomizationPanelProps> = ({
     '#E8F5E9', // Material Green 50
     '#FFF3E0', // Material Orange 50
     '#F3E5F5', // Material Purple 50
-    '#E0F7FA'  // Material Cyan 50
+    '#E0F7FA',  // Material Cyan 50
+    '#F0FDF4', // Pale Mint
+    '#F8FAFC', // Slate 50
+    '#FDF4FF', // Fuchsia 50
+    '#FFFBEB'  // Amber 50
   ];
 
   const errorCorrectionLevels = [
@@ -169,7 +178,7 @@ const CustomizationPanel: FC<CustomizationPanelProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
     >
-      <h2 className="text-2xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
+      <h2 className="text-2xl font-semibold mb-4 text-blue-500 flex items-center gap-2">
         <LucideIcons.Sliders size={20} />
         Customization
       </h2>
@@ -338,3 +347,4 @@ const CustomizationPanel: FC<CustomizationPanelProps> = ({
 };
 
 export default CustomizationPanel;
+

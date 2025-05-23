@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { QRCodeData, QRCodeStyleOptions, QRCodeType, HistoryItem } from './types';
-import QRTabNavigation from './components/QRTabNavigation';
+// import QRTabNavigation from './components/QRTabNavigation';
 import QRPreview from './components/QRPreview';
 import CustomizationPanel from './components/CustomizationPanel';
 import URLForm from './components/forms/URLForm';
@@ -29,7 +29,9 @@ function App() {
     size: 256,
     level: 'H',
     includeMargin: false,
-    logoImage: logoImage
+    logoImage: logoImage,
+    logoHeight: 30,
+    logoWidth: 90
   });
   
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -49,81 +51,81 @@ function App() {
     loadHistory();
   }, []);
 
-  const handleTabChange = (tab: QRCodeType) => {
-    setActiveTab(tab);
+  // const handleTabChange = (tab: QRCodeType) => {
+  //   setActiveTab(tab);
     
-    // Reset the form data based on the selected tab
-    switch (tab) {
-      case 'url':
-        setQrData({
-          type: 'url',
-          value: 'https://',
-          urls: ['']
-        });
-        break;
-      case 'text':
-        setQrData({
-          type: 'text',
-          value: ''
-        });
-        break;
-      case 'contact':
-        setQrData({
-          type: 'contact',
-          value: '',
-          contactInfo: {
-            firstName: '',
-            lastName: '',
-            organization: 'Mauritius Network Services Ltd.',
-            title: '',
-            email: '',
-            phone: '',
-            address: 'Silicon Avenue, Cybercity, Ebene',
-            country: 'Mauritius',
-            website: 'https://www.mns.mu/'
-          }
-        });
-        break;
-      case 'app':
-        setQrData({
-          type: 'app',
-          value: '',
-          appLinks: {
-            googlePlay: '',
-            appStore: '',
-            huaweiAppGallery: ''
-          }
-        });
-        break;
-      case 'wifi':
-        setQrData({
-          type: 'wifi',
-          value: '',
-          wifiConfig: {
-            ssid: '',
-            password: '',
-            encryption: 'WPA',
-            hidden: false
-          }
-        });
-        break;
-      case 'event':
-        setQrData({
-          type: 'event',
-          value: '',
-          eventInfo: {
-            title: '',
-            description: '',
-            location: '',
-            startTime: '',
-            endTime: '',
-            organizer: '',
-            organizerEmail: ''
-          }
-        });
-        break;
-    }
-  };
+  //   // Reset the form data based on the selected tab
+  //   switch (tab) {
+  //     case 'url':
+  //       setQrData({
+  //         type: 'url',
+  //         value: 'https://',
+  //         urls: ['']
+  //       });
+  //       break;
+  //     case 'text':
+  //       setQrData({
+  //         type: 'text',
+  //         value: ''
+  //       });
+  //       break;
+  //     case 'contact':
+  //       setQrData({
+  //         type: 'contact',
+  //         value: '',
+  //         contactInfo: {
+  //           firstName: '',
+  //           lastName: '',
+  //           organization: 'Mauritius Network Services Ltd.',
+  //           title: '',
+  //           email: '',
+  //           phone: '',
+  //           address: 'Silicon Avenue, Cybercity, Ebene',
+  //           country: 'Mauritius',
+  //           website: 'https://www.mns.mu/'
+  //         }
+  //       });
+  //       break;
+  //     case 'app':
+  //       setQrData({
+  //         type: 'app',
+  //         value: '',
+  //         appLinks: {
+  //           googlePlay: '',
+  //           appStore: '',
+  //           huaweiAppGallery: ''
+  //         }
+  //       });
+  //       break;
+  //     case 'wifi':
+  //       setQrData({
+  //         type: 'wifi',
+  //         value: '',
+  //         wifiConfig: {
+  //           ssid: '',
+  //           password: '',
+  //           encryption: 'WPA',
+  //           hidden: false
+  //         }
+  //       });
+  //       break;
+  //     case 'event':
+  //       setQrData({
+  //         type: 'event',
+  //         value: '',
+  //         eventInfo: {
+  //           title: '',
+  //           description: '',
+  //           location: '',
+  //           startTime: '',
+  //           endTime: '',
+  //           organizer: '',
+  //           organizerEmail: ''
+  //         }
+  //       });
+  //       break;
+  //   }
+  // };
 
   const handleDataChange = (newData: Partial<QRCodeData>) => {
     const updatedData = { ...qrData, ...newData };
@@ -203,14 +205,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <QrCode size={28} className="text-blue-600" />
-              <h1 className="text-xl font-bold text-gray-900">DPI QR Code Generator</h1>
+              <QrCode size={30} className="text-blue-600" />
+              <h1 className="text-xl font-bold text-gray-700">DPI QR Code Generator</h1>
             </div>
             
             <button
@@ -229,7 +231,7 @@ function App() {
         <div className="grid md:grid-cols-6 gap-6">
           {/* Left Column - Form */}
           <div className="md:col-span-4 space-y-6">
-            <QRTabNavigation activeTab={activeTab} onTabChange={handleTabChange} />
+            {/* <QRTabNavigation activeTab={activeTab} onTabChange={handleTabChange} /> */}
             
             <div className="bg-white p-8 rounded-md shadow-lg">
               {renderActiveForm()}
@@ -244,6 +246,11 @@ function App() {
                 isValidPreview={isValidPreview}
               />
             </div>
+
+            <CustomizationPanel 
+                styleOptions={styleOptions} 
+                onStyleChange={handleStyleChange} 
+              />
           </div>
           
           {/* Right Column - Preview & Customization */}
@@ -252,6 +259,11 @@ function App() {
               animate={{ x: showHistory ? -400 : 0, opacity: showHistory ? 0 : 1 }}
               transition={{ duration: 0.3 }}
               className={`space-y-6 ${showHistory ? 'hidden md:block' : ''}`}
+              style={{ 
+                position: 'sticky',
+                top: '1rem',
+                zIndex: 10
+              }}
             >
               {/* Desktop Preview */}
               <div className="hidden md:block">
@@ -262,11 +274,6 @@ function App() {
                   isValidPreview={isValidPreview}
                 />
               </div>
-              
-              <CustomizationPanel 
-                styleOptions={styleOptions} 
-                onStyleChange={handleStyleChange} 
-              />
             </motion.div>
             
             {/* History Sidebar */}
@@ -287,7 +294,7 @@ function App() {
       </main>
       
       {/* Footer */}
-      <footer className="bg-white mt-12 py-6 border-t">
+      <footer className="bg-white mt-2 py-6 border-t">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm text-gray-500">
             &copy; {new Date().getFullYear()} Mauritius Network Services Ltd. All rights reserved. | <a href="https://www.mns.mu/wp-content/uploads/2024/07/DC0-MNS_Privacy-Notice.pdf" target="_blank">Privacy Notice</a>
@@ -299,5 +306,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
 
 
