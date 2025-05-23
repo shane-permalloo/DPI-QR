@@ -1,4 +1,4 @@
-# MCCI GPS Collector
+# DPI QR Generator
 
 A lightweight Vite + React application designed to generate QR code from the URL parameter passed in the browser URL.
 
@@ -16,8 +16,8 @@ Ensure you have the following installed on your machine:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/shane-permalloo/mcci-gps-collector.git
-   cd mcci-gps-collector
+   git clone https://github.com/shane-permalloo/dpi-qr.git
+   cd dpi-qr
    ```
 
 2. **Install Dependencies**
